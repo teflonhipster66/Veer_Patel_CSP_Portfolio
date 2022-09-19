@@ -1,6 +1,6 @@
-from cmath import sin
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 
 
 constant = True
@@ -9,11 +9,10 @@ counter = 0
 gcounter = 0
 while constant == True:
 
-
     equation = input("").lower()
     equation = ''.join(equation.split())
     
-    
+
     def calculate():
         if operator == "+":
             return num1 + num2
@@ -41,7 +40,15 @@ while constant == True:
 
     def graph():
         x = np.linspace(-5,5,100)
-        y = vertStretch * (HorShift * x**power) + vertShift
+
+        if type <= 3:
+             y = vertStretch * (HorShift * x**power) + vertShift
+
+        elif type == 4:
+            y = np.sin(x)
+        
+        elif type == 5:
+            y = np.cos(x)
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
         ax.spines['left'].set_position('center')
@@ -71,10 +78,13 @@ while constant == True:
         print("GRAPHING MODE")
         gcounter = gcounter + 1
         while gcounter == 1:
-            print("(1):Linear, (2):Quadratic, (3):Cubic, (4): Sin")
+            print("(1):Linear, (2):Quadratic, (3):Cubic, (4): Sin, (5) Cos, (6) Normal mode")
             type = int(input("what type of function would you like to graph"))
-            
-            if type <= 3:
+             
+            if type == 6:
+                print("Normal mode")
+                break
+            else:
                 power = type
                 transforms = transformations()
                 vertShift = int(transforms[0])
@@ -82,16 +92,7 @@ while constant == True:
                 HorShift = int(transforms[2])
                 HorStretch = int(transforms[3])
                 graph()
-
             
-            
-            if type == "n":
-                gcounter = gcounter - 1
-                print("Normal mode")
-
-    
-
-
 
     elif unpacked[0] in OPS:
             num1 = previous
@@ -134,5 +135,5 @@ while constant == True:
         final = calculate()
         print(final)
         previous = final
-    
+
     
