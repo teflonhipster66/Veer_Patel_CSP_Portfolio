@@ -1,3 +1,4 @@
+from cmath import sin
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -5,10 +6,11 @@ import numpy as np
 constant = True
 OPS = ["+", "-", "*", "/", "^"]
 counter = 0
+gcounter = 0
 while constant == True:
 
 
-    equation = input("")
+    equation = input("").lower()
     equation = ''.join(equation.split())
     
     
@@ -28,6 +30,29 @@ while constant == True:
     check = any(item in OPS for item in unpacked)
 
 
+    def transformations():
+        vertShift = input("What is the vertical shift")
+        vertStretch = input("what is the vertical stretch")
+        HorShift = input("What is the horizontal shift")
+        HorStretch = input("What is the horizontal stretch ")
+        transformations = [vertShift, vertStretch, HorShift, HorStretch]
+        return transformations
+
+
+    def graph():
+        x = np.linspace(-5,5,100)
+        y = vertStretch * (HorShift * x**power) + vertShift
+        fig = plt.figure()
+        ax = fig.add_subplot(1, 1, 1)
+        ax.spines['left'].set_position('center')
+        ax.spines['bottom'].set_position('zero')
+        ax.spines['right'].set_color('none')
+        ax.spines['top'].set_color('none')
+        ax.xaxis.set_ticks_position('bottom')
+        ax.yaxis.set_ticks_position('left')
+        plt.plot(x,y, 'r')
+        plt.show()
+
 
     def finder():
         x = 0
@@ -42,28 +67,40 @@ while constant == True:
 
 
 
-    if unpacked [0] == "g":
-        graph = ''.join(unpacked[1: len(unpacked)])
-        print(graph)
-        
+    if unpacked[0] == "g":
+        print("GRAPHING MODE")
+        gcounter = gcounter + 1
+        while gcounter == 1:
+            print("(1):Linear, (2):Quadratic, (3):Cubic, (4): Sin")
+            type = int(input("what type of function would you like to graph"))
+            
+            if type <= 3:
+                power = type
+                transforms = transformations()
+                vertShift = int(transforms[0])
+                vertStretch = int(transforms[1])
+                HorShift = int(transforms[2])
+                HorStretch = int(transforms[3])
+                graph()
+
             
             
+            if type == "n":
+                gcounter = gcounter - 1
+                print("Normal mode")
 
-
-        
-        
-       
+    
 
 
 
     elif unpacked[0] in OPS:
-             num1 = previous
-             operator = unpacked[0]
-             num2 = float(''.join(unpacked[1: len(unpacked)]))
-             final = calculate()
-             print(final)
-             previous = final
- 
+            num1 = previous
+            operator = unpacked[0]
+            num2 = float(''.join(unpacked[1: len(unpacked)]))
+            final = calculate()
+            print(final)
+            previous = final
+
 
 
     elif "(" in unpacked or ")" in unpacked:
