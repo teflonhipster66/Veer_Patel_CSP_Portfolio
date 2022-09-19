@@ -1,4 +1,5 @@
-
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 constant = True
@@ -8,7 +9,8 @@ while constant == True:
 
 
     equation = input("")
-    equation.strip()
+    equation = ''.join(equation.split())
+    
     
     def calculate():
         if operator == "+":
@@ -40,10 +42,21 @@ while constant == True:
 
 
 
-    
-    
+    if unpacked [0] == "g":
+        graph = ''.join(unpacked[1: len(unpacked)])
+        print(graph)
+        
+            
+            
 
-    if unpacked[0] in OPS:
+
+        
+        
+       
+
+
+
+    elif unpacked[0] in OPS:
              num1 = previous
              operator = unpacked[0]
              num2 = float(''.join(unpacked[1: len(unpacked)]))
