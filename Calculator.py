@@ -1,12 +1,20 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import math
+from os import system, name
 
 
 constant = True
 OPS = ["+", "-", "*", "/", "^"]
 counter = 0
 gcounter = 0
+
+#Directions
+
+print("Welcome to the graphing calculator app")
+print("press N for directions")
+
+
 
 while constant == True:
 
@@ -39,6 +47,7 @@ while constant == True:
             HorStretch = input("What is the horizontal stretch ")
             transformations = [vertShift, vertStretch, HorShift, HorStretch]
             return transformations
+
 
 
         def graph():
@@ -76,6 +85,20 @@ while constant == True:
                     return stuff
 
 
+
+
+
+        if unpacked[0] == "n" or unpacked[0] == "N":
+            print("DIRECTIONS")
+            print("Only two numbers can be calculated at a time")
+            print("Input equations like this to get a result: 12+12")
+            print("You can do parentheses like this (12+123) / 2")
+            print("spaces do not matter")
+            print("type in g to enter graphing mode and 6 to go back into normal mode")
+            print("starting with an operator will use the previous number and the new number you enter")
+            print("Press c to clear")
+
+            
 
         if unpacked[0] == "g":
             print("GRAPHING MODE")
@@ -140,11 +163,23 @@ while constant == True:
             final = calculate()
             print(final)
             previous = final
+
+
+        if unpacked[0] == "c":
+            previous = ""
+            _ = system('cls')
+            print("Welcome to the graphing calculator app")
+            print("press N for directions")
+                
+
+
     except Exception:
         print("ERROR INVALID INPUT")
         if previous:
             print("Restarting before error occured")
         continue
+
+        
 
 
 
