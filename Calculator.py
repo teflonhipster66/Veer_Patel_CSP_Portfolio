@@ -109,6 +109,7 @@ while constant == True:
                 
                 if type == 6:
                     print("Normal mode")
+                    gcounter = gcounter - 1
                     if previous:
                         print(previous)
                     break
